@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        .sence{
+            width: 200px;height: 200px;
+            padding: 200px;
+            background: url(111.jpg) no-repeat center;
+            background-size: 100% 100%;
+            perspective: 800px;
+            margin: 0 auto;
+        }
+        .box{
+            width: 200px;
+            height: 200px;
+            position: relative;
+            transform-style: preserve-3d;
+            /*transition:transform 2s linear;*/
+            transform-origin: center center 100px;
+        }
+        /*.box:hover{*/
+            /*transform: rotateX(360deg);*/
+        /*}*/
+        .mian{
+            width:200px;
+            height: 200px;
+            position: absolute;
+            top: 0;left: 0;
+            font-size: 50px;
+            text-align: center;
+            line-height: 200px;
+            color:#FFF;
+        }
+        .mian:nth-child(1){
+            /*background: red;*/
+            background: url("1.gif") no-repeat center;
+            transform: rotateX(90deg);
+            transform-origin: top;
+        }
+        .mian:nth-child(2){
+            /*background: orange;*/
+            background: url("1.gif") no-repeat center;
+            transform: rotateY(-90deg);
+            transform-origin: left;
+        }
+        .mian:nth-child(3){
+            /*background: #333; */
+            background: url("1.gif") no-repeat center;
+            transform: rotateY(180deg);
+
+        }
+        .mian:nth-child(4){
+            /*background: blue; */
+            background: url("1.gif") no-repeat center;
+            transform: rotateX(-90deg);
+            transform-origin: bottom;
+        }
+        .mian:nth-child(5){
+            /*background: pink;*/
+            background: url("1.gif") no-repeat center;
+            transform: rotateY(90deg);
+            transform-origin: right;
+        }
+        .mian:nth-child(6){
+            /*background: green;*/
+            background: url("1.gif") no-repeat center;
+            transform:translateZ(200px);
+        }
+        .sanjiao{
+            width: 0px;
+            height: 0px;
+            border-top:none;
+            border-right:10px solid rgba(0,0,0,0);
+            border-left:10px solid rgba(0,0,0,0);
+            border-bottom:20px solid rgba(0,0,0,1);
+        }
+    </style>
+    <script src="jQuery.js"></script>
+    <script>
+        $(function(){
+            var cx = $('.box').offset().left+$('.box').width()/2;
+            var cy = $('.box').offset().top+$('.box').height()/2;
+            $(document).mousemove(function(e){
+                var px = e.pageX - cx;
+                var py = e.pageY - cy;
+                var pz = 0;
+                var m =Math.sqrt(px*px+py*py+pz*pz);
+                var mx= px/m;
+                var my =py/m;
+                var mz = pz/m;
+                $('.box').css({
+                    transform:"rotate3D("+mx+","+my+","+mz+","+m+"deg)"
+                })
+            })
+        })
+    </script>
+</head>
+<body>
+    <div class="sence">
+        <div class="box">
+            <div class="mian"></div>
+            <div class="mian"></div>
+            <div class="mian"></div>
+            <div class="mian"></div>
+            <div class="mian"></div>
+            <div class="mian"></div>
+        </div>
+    </div>
+</body>
+</html>
